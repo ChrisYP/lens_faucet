@@ -1,0 +1,25 @@
+2025-03-04 20:42:17.283 | INFO     | __main__:main:22 - 开始处理任务, 任务数量: 8, 线程数: 1
+2025-03-04 20:42:17.283 | WARNING  | src.task:process:80 - Task 0x725A197DA672E031e4AAD6d1E4F3d7052e644d9F has been completed, skip
+2025-03-04 20:42:17.283 | WARNING  | src.task:process:80 - Task 0x6435024799CF7bA9d16026772CB0927D59AA7Ef9 has been completed, skip
+2025-03-04 20:42:17.283 | DEBUG    | __main__:main:30 - 完成进度: 1/8 (12.50%)
+2025-03-04 20:42:17.283 | WARNING  | src.task:process:80 - Task 0x327E6eeDb609c0a787d52471CDEeF0423ef509a9 has been completed, skip
+2025-03-04 20:42:17.283 | DEBUG    | __main__:main:30 - 完成进度: 2/8 (25.00%)
+2025-03-04 20:42:17.284 | WARNING  | src.task:process:80 - Task 0x1D2cA39D0388DaF75e615CB08B75060c45f19EFE has been completed, skip
+2025-03-04 20:42:17.284 | DEBUG    | __main__:main:30 - 完成进度: 3/8 (37.50%)
+2025-03-04 20:42:17.284 | WARNING  | src.task:process:80 - Task 0x622C66e17DC330d56E903c136a82d04f7565e8F1 has been completed, skip
+2025-03-04 20:42:17.284 | DEBUG    | __main__:main:30 - 完成进度: 4/8 (50.00%)
+2025-03-04 20:42:17.284 | WARNING  | src.task:process:80 - Task 0x2d1B9332573D204FFC13c5fdB7538434e43a3386 has been completed, skip
+2025-03-04 20:42:17.284 | DEBUG    | __main__:main:30 - 完成进度: 5/8 (62.50%)
+2025-03-04 20:42:17.284 | WARNING  | src.task:process:80 - Task 0xe8f4055ee312862977a2fc8c11163A96D62C59Cf has been completed, skip
+2025-03-04 20:42:17.284 | DEBUG    | __main__:main:30 - 完成进度: 6/8 (75.00%)
+2025-03-04 20:42:17.284 | WARNING  | src.task:process:80 - Task 0x66cc811404692AeE7CF34Fb329f7ca2f8010C613 has been completed, skip
+2025-03-04 20:42:17.284 | DEBUG    | __main__:main:30 - 完成进度: 7/8 (87.50%)
+2025-03-04 20:42:17.284 | DEBUG    | __main__:main:30 - 完成进度: 8/8 (100.00%)
+2025-03-04 20:42:17.284 | DEBUG    | __main__:main:33 - 总耗时: 0.00秒
+2025-03-04 20:42:22.237 | INFO     | __main__:main:22 - 开始处理任务, 任务数量: 8, 线程数: 1
+2025-03-04 20:42:40.131 | INFO     | src.task:task:69 - Task 0x725A197DA672E031e4AAD6d1E4F3d7052e644d9F response: {"json":{"0":[[0],[null,0,0]]}}
+{"json":[0,0,[[{"result":0}],["result",0,1]]]}
+{"json":[1,0,[[{"data":0}],["data",0,2]]]}
+{"json":[2,0,[[{"success":true,"hash":"0x8035630c0e7547b6b368450a1aec4f94537bfccabae5ffcddc6c27b415c36883"}]]]}
+
+2025-03-04 20:42:40.132 | DEBUG    | __main__:main:30 - 完成进度: 1/8 (12.50%)

@@ -1,0 +1,8 @@
+py-abu
+APScheduler==3.10.4
+curl_cffi==0.7.4
+loguru==0.7.2
+python-dotenv==1.0.1
+pytz==2024.1
+Requests==2.32.3
+vthread==0.1.5
