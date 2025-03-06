@@ -4,10 +4,10 @@
 # @Email   : 10512@qq.com
 # @File    : task.py
 # @Software: PyCharm
-
+import re
 
 import abu
-from curl_cffi import requests
+import requests
 from dotenv import load_dotenv
 from loguru import logger
 from src.utils import save_result, get_proxy, completed_list, data_path, crack_cf, crack_puzzle
@@ -19,6 +19,7 @@ success_path = data_path + "success.txt"
 def task(t):
     save_result(t)
     proxy = get_proxy()
+    session = requests.Session()
     headers = {
         "accept": "*/*",
         "accept-language": "zh-CN,zh;q=0.9",
@@ -42,10 +43,14 @@ def task(t):
             break
         except BaseException as e:
             logger.error(f"Failed to crack cf, retrying: {e}")
+    url = "https://testnet.lenscan.io/faucet"
+    r = session.get(url, headers=headers)
+    page_token = re.findall('page\-token\" value\=\"(.*?)\"', r.text)[0]
+    logger.info(f"Task {t} page_token: {page_token}")
 
     while 1:
         try:
-            sessionId, moves = crack_puzzle(token)
+            sessionId, moves = crack_puzzle(token, page_token)
             break
         except BaseException as e:
             logger.error(f"Failed to crack puzzle, retrying: {e}")
@@ -57,6 +62,7 @@ def task(t):
             "json": {
                 "address": t,
                 "cfToken": token,
+                "pageToken": page_token,
                 "gameChallenge": {
                     "sessionId": sessionId,
                     "moves": moves
@@ -64,7 +70,9 @@ def task(t):
             }
         }
     }
-    resp = requests.post(url, json=data, headers=headers, params=params, proxy=proxy).text
+    resp = session.post(url, json=data, headers=headers, params=params, proxies={
+        "all": "http://" + proxy
+    }).text
     logger.info(f"Task {t} response: {resp}")
     return True if '"success":true' in resp else False
 
