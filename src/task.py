@@ -5,8 +5,6 @@
 # @File    : task.py
 # @Software: PyCharm
 
-import random
-import time
 
 import abu
 from curl_cffi import requests
@@ -39,17 +37,18 @@ def task(t):
     }
     while 1:
         try:
-            sessionId, moves = crack_puzzle()
-            break
-        except BaseException as e:
-            logger.error(f"Failed to crack puzzle, retrying: {e}")
-    while 1:
-        try:
             ret = crack_cf(proxy)
             token = ret["data"]["token"]
             break
         except BaseException as e:
             logger.error(f"Failed to crack cf, retrying: {e}")
+
+    while 1:
+        try:
+            sessionId, moves = crack_puzzle(token)
+            break
+        except BaseException as e:
+            logger.error(f"Failed to crack puzzle, retrying: {e}")
 
     url = "https://testnet.lenscan.io/api/trpc/faucet.claim"
     params = {"batch": "1"}

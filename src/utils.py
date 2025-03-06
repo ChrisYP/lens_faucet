@@ -39,11 +39,12 @@ except FileNotFoundError:
     completed_list = []
 
 
-def crack_puzzle():
+def crack_puzzle(cf_token):
     resp = requests.post("http://api.nocaptcha.cn/api/wanda/lenscan/universal", headers={
         "User-Token": os.getenv("USER_TOKEN"),
     }, json={
         "difficulty": "hard",
+        "cfToken": cf_token
     }).json()
 
     data = resp["data"]

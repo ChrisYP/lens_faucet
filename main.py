@@ -37,5 +37,5 @@ if __name__ == '__main__':
     timer = abu.SetInterval(lambda: load_dotenv(override=True), 3)
     with open("data/data.txt", "r") as f:
         data = f.read().strip().split("\n")
-    main(data, int(os.getenv("WORKERS")) or 30)
+    main(data, int(os.getenv("WORKERS")) or os.cpu_count() * 2)
     timer.cancel()
