@@ -43,14 +43,10 @@ def task(t):
             break
         except BaseException as e:
             logger.error(f"Failed to crack cf, retrying: {e}")
-    url = "https://testnet.lenscan.io/faucet"
-    r = session.get(url, headers=headers)
-    page_token = re.findall('page\-token\" value\=\"(.*?)\"', r.text)[0]
-    logger.info(f"Task {t} page_token: {page_token}")
 
     while 1:
         try:
-            sessionId, moves = crack_puzzle(token, page_token)
+            sessionId, moves, page_token = crack_puzzle(token)
             break
         except BaseException as e:
             logger.error(f"Failed to crack puzzle, retrying: {e}")

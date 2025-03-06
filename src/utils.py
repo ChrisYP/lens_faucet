@@ -11,6 +11,7 @@ import string
 
 import requests
 from dotenv import load_dotenv
+from loguru import logger
 
 
 def get_proxy():
@@ -39,19 +40,19 @@ except FileNotFoundError:
     completed_list = []
 
 
-def crack_puzzle(cf_token, page_token):
+def crack_puzzle(cf_token):
     resp = requests.post("http://api.nocaptcha.cn/api/wanda/lenscan/universal", headers={
         "User-Token": os.getenv("USER_TOKEN"),
     }, json={
         "difficulty": "hard",
-        "cfToken": cf_token,
-        "pageToken": page_token
+        "cfToken": cf_token
     }).json()
-
+    logger.info(resp)
     data = resp["data"]
     sessionId = data["sessionId"]
     moves = data["moves"]
-    return sessionId, moves
+    page_token = data["pageToken"]
+    return sessionId, moves, page_token
 
 
 def crack_cf(proxy):
