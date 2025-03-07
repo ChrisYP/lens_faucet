@@ -4,7 +4,7 @@
 # @Email   : 10512@qq.com
 # @File    : task.py
 # @Software: PyCharm
-import re
+
 
 import abu
 import requests
@@ -44,13 +44,15 @@ def task(t):
         except BaseException as e:
             logger.error(f"Failed to crack cf, retrying: {e}")
 
-    while 1:
+    for _ in range(9):
         try:
-            sessionId, moves, page_token = crack_puzzle(token)
+            sessionId, moves = crack_puzzle(token)
             break
         except BaseException as e:
             logger.error(f"Failed to crack puzzle, retrying: {e}")
-
+    else:
+        logger.error("Failed to crack puzzle, skip")
+        return False
     url = "https://testnet.lenscan.io/api/trpc/faucet.claim"
     params = {"batch": "1"}
     data = {
@@ -58,7 +60,6 @@ def task(t):
             "json": {
                 "address": t,
                 "cfToken": token,
-                "pageToken": page_token,
                 "gameChallenge": {
                     "sessionId": sessionId,
                     "moves": moves

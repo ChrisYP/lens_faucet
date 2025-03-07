@@ -51,8 +51,7 @@ def crack_puzzle(cf_token):
     data = resp["data"]
     sessionId = data["sessionId"]
     moves = data["moves"]
-    page_token = data["pageToken"]
-    return sessionId, moves, page_token
+    return sessionId, moves
 
 
 def crack_cf(proxy):
